@@ -32,7 +32,7 @@ st.markdown("""
     .hero-title {
         font-size: 3rem;
         font-weight: 800;
-        color: #c00000;
+        color: #BA0C2F;
         margin-top: 0.5rem;
         margin-bottom: 0.25rem;
     }
