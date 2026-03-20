@@ -9,104 +9,110 @@ st.set_page_config(
     layout="wide",
 )
 
-# -------------------------------------------------
-# GLOBAL BRAND COLORS (Roberts Residential, LLC)
-# -------------------------------------------------
 PRIMARY_RED = "#c00000"
 DARK_TEXT = "#222222"
-LIGHT_BG = "#ffffff"
-SOFT_GRAY = "#f5f5f5"
 
 # -------------------------------------------------
-# Custom CSS — polished layout
+# Custom CSS
 # -------------------------------------------------
 st.markdown(f"""
     <style>
-
-    /* Force LIGHT MODE for consistent branding */
-    body {{
-        background-color: {LIGHT_BG} !important;
-        color: {DARK_TEXT} !important;
-    }}
-
-    /* Remove padding from top of page */
+    /* Reduce default padding */
     .block-container {{
-        padding-top: 2rem !important;
+        padding-top: 1.5rem !important;
         padding-bottom: 2rem !important;
+        max-width: 1100px !important;  /* prevents super-wide content */
     }}
 
     /* HERO CARD */
     .hero-card {{
-        background-color: {LIGHT_BG};
-        padding: 2rem 1rem;
+        background-color: #ffffff;
+        padding: 1.75rem 2rem;
         border-radius: 16px;
-        box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
-        max-width: 900px;
-        margin: 0 auto 2rem auto;
-        text-align: center;
+        box-shadow: 0px 4px 16px rgba(0,0,0,0.08);
+        margin-bottom: 2.5rem;
+    }}
+
+    .hero-row {{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+    }}
+
+    .hero-logo {{
+        flex: 0 0 auto;
+    }}
+
+    .hero-text {{
+        flex: 1 1 auto;
     }}
 
     .hero-title {{
         font-size: 2.4rem;
         font-weight: 800;
         color: {PRIMARY_RED};
-        margin-top: 1rem;
         margin-bottom: 0.25rem;
     }}
 
     .hero-subtitle {{
-        font-size: 1.2rem;
-        color: #444;
-        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        color: #444444;
+        margin-bottom: 0.75rem;
     }}
 
     .hero-body {{
-        max-width: 700px;
-        margin: 0 auto;
-        font-size: 1.05rem;
-        color: #333;
+        font-size: 1.0rem;
+        color: #333333;
     }}
 
-    /* Section titles */
     .section-heading {{
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         font-weight: 700;
         color: {PRIMARY_RED};
-        margin-top: 2rem;
-        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.75rem;
     }}
 
-    /* Hide Streamlit chrome */
-    #MainMenu, footer {{visibility: hidden;}}
+    /* Hide Streamlit menu + footer for cleaner look */
+    #MainMenu {{visibility: hidden;}}
+    footer {{visibility: hidden;}}
     </style>
 """, unsafe_allow_html=True)
 
 # -------------------------------------------------
-# HERO SECTION (logo + text)
+# HERO SECTION
 # -------------------------------------------------
 st.markdown("<div class='hero-card'>", unsafe_allow_html=True)
 
-# LOGO — scaled to a clean width
-st.image("Logo_White.jpg", width=260)
+st.markdown("<div class='hero-row'>", unsafe_allow_html=True)
 
+# Left: logo
+st.markdown("<div class='hero-logo'>", unsafe_allow_html=True)
+st.image("Logo_White.jpg", width=220)
+st.markdown("</div>", unsafe_allow_html=True)
+
+# Right: text
+st.markdown("<div class='hero-text'>", unsafe_allow_html=True)
 st.markdown("<div class='hero-title'>Residential Project Tracker</div>", unsafe_allow_html=True)
-
 st.markdown(
     "<div class='hero-subtitle'>Plan smarter. Track costs & schedules. Build with confidence.</div>",
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
-
 st.markdown(
     """
     <div class='hero-body'>
     Built by <b>Roberts Residential, LLC</b> for real‑world homebuilding and remodeling.
-    Keep your owners, lenders, and subcontractors aligned with clean, easy‑to‑read dashboards.
+    Keep your owners, lenders, and subcontractors aligned with clear, easy‑to‑read dashboards,
+    without wrestling with P6 or monster spreadsheets.
     </div>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
+st.markdown("</div>", unsafe_allow_html=True)  # close hero-text
 
-st.markdown("</div>", unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)  # close hero-row
+st.markdown("</div>", unsafe_allow_html=True)  # close hero-card
 
 # -------------------------------------------------
 # MAIN ACTIONS
@@ -133,8 +139,10 @@ with c3:
     if st.button("Get Quick Price →", use_container_width=True, type="primary"):
         st.switch_page("pages/quick_estimate.py")
 
+st.markdown("---")
+
 # -------------------------------------------------
-# AUDIENCE SECTIONS
+# WHO IT'S FOR
 # -------------------------------------------------
 st.markdown("<div class='section-heading'>Built for residential work.</div>", unsafe_allow_html=True)
 
@@ -142,15 +150,28 @@ a, b, c = st.columns(3)
 
 with a:
     st.markdown("#### 🧱 Builders & GCs")
-    st.markdown("- Track multiple jobs easily\n- Phase‑based views\n- Budget vs. actual clarity")
+    st.markdown("""
+    - Track multiple jobs easily  
+    - Phase‑based views  
+    - Budget vs. actual clarity  
+    """)
 
 with b:
     st.markdown("#### 🏡 Homeowners")
-    st.markdown("- Know where money goes\n- Phase progress\n- Fewer surprises")
+    st.markdown("""
+    - Know where money goes  
+    - See progress by phase  
+    - Fewer budget surprises  
+    """)
 
 with c:
     st.markdown("#### 🧮 Lenders / Banks")
-    st.markdown("- Clean draw schedules\n- Proof of progress\n- Exportable summaries")
+    st.markdown("""
+    - Clean draw schedules  
+    - Proof of progress  
+    - Exportable summaries  
+    """)
 
 st.markdown("---")
-st.caption("Roberts Residential, LLC – Serving Dothan, AL and surrounding communities.")
+st.caption("Roberts Residential, LLC – Serving Dothan, AL, and surrounding communities.")
+``
